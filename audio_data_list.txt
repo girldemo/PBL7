@@ -2,3 +2,4 @@ thinh2.wav	data_audio\thinh2.wav   Thinh
 tien_data.wav	data_audio\tien_data.wav    Tien
 VIVOSDEV04_R004.wav	data_audio\VIVOSDEV04_R004.wav  Nam
 VIVOSDEV19_061.wav	data_audio\VIVOSDEV19_061.wav   Thuy
+Phuc_data	data_audio\Phuc_data.wav	Phuc

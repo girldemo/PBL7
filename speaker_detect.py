@@ -1,7 +1,7 @@
 import random
 
 import numpy as np
-
+import wav_handle as wh
 from deep_speaker.audio import read_mfcc
 from deep_speaker.batcher import sample_from_mfcc
 from deep_speaker.constants import SAMPLE_RATE, NUM_FRAMES
@@ -16,6 +16,7 @@ random.seed(123)
 model = DeepSpeakerModel()
 model.m.load_weights('model_checkpoint_265.h5', by_name=True)
 
+audio_path = "test_wavfile\Phuc2.wav"
 file_path = "audio_data_list.txt"
 
 # Tạo danh sách để lưu thông tin
@@ -35,7 +36,8 @@ with open(file_path, "r", encoding="utf-8") as file:
         # Thêm thông tin vào danh sách
         audio_list.append({"file_name": file_name, "file_path": file_path, "person_name": person_name})
 
-mfcc_input = sample_from_mfcc(read_mfcc('tien.wav', SAMPLE_RATE), NUM_FRAMES)
+wh.convert_sample_rate_in_place(audio_path) #convert to 16000Hz sample rate
+mfcc_input = sample_from_mfcc(read_mfcc(audio_path, SAMPLE_RATE), NUM_FRAMES)
 predict_input = model.m.predict(np.expand_dims(mfcc_input, axis=0))
 
 output_value = []
